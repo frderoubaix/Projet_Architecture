@@ -1,0 +1,9 @@
+apiVersion: 1
+datasources:
+
+  - name: BenchDatas
+    type: marcusolsson-csv-datasource
+    editable: true
+    url: /home/data.csv
+    jsonData:
+      storage: local

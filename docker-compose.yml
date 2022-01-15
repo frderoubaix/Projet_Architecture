@@ -1,0 +1,21 @@
+version: '3'
+services:
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./dashboards:/etc/grafana/dashboards
+      - ./provisioning:/etc/grafana/provisioning
+      - ./data.csv:/home/data.csv
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_INSTALL_PLUGINS=marcusolsson-csv-datasource   
+  python-script:
+      build: .
+      volumes:
+        - .\data.csv:/code/data.csv
+      
