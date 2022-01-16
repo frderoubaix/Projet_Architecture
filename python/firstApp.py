@@ -101,7 +101,7 @@ while fitTh.etat:
 finFit = round(time.time() * 1000)
 
 execFit = finFit - debutFit
-print("Fit duration in ms : " + execFit.__str__)
+print("Fit duration in ms : ", execFit)
 
 data_zero = [(datetime.now() - timedelta(hours=1)), 0, 0]
 
@@ -138,4 +138,4 @@ while evalTh.etat:
 finEval = round(time.time() * 1000)
 
 execEval = finEval - debutEval
-print("Eval duration in ms : " + execEval.__str__)
+print("Eval duration in ms : ", execEval)

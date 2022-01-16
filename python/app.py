@@ -18,7 +18,7 @@ class fitThread(threading.Thread):
 
     def run(self):
         self.etat = True  # on passe en mode marche
-        model.fit(self.x_train, self.y_train, epochs=5)
+        model.fit(self.x_train, self.y_train, epochs=1)
         self.etat = False
 
 
@@ -101,7 +101,7 @@ while fitTh.etat:
 finFit = round(time.time() * 1000)
 
 execFit = finFit - debutFit
-print("Fit duration in ms : " + execFit.__str__)
+print("Fit duration in ms : ", execFit)
 
 data_zero = [(datetime.now() - timedelta(hours=1)), 0, 0]
 
@@ -138,4 +138,4 @@ while evalTh.etat:
 finEval = round(time.time() * 1000)
 
 execEval = finEval - debutEval
-print("Eval duration in ms : " + execEval.__str__)
+print("Eval duration in ms : ", execEval)
