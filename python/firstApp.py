@@ -70,7 +70,14 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-time.sleep(10)
+data_zero = [(datetime.now() - timedelta(hours=1)), 0, 0]
+
+f = open('data.csv', 'a', newline='', encoding='UTF8')
+writer = csv.writer(f, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+writer.writerow(data_zero)
+f.close()
+
+debutFit = round(time.time() * 1000)
 
 fitTh = fitThread(x_train, y_train)  # crée un thread de notre fit
 fitTh.start()  # démarre le thread,
@@ -91,6 +98,11 @@ while fitTh.etat:
     f.close()
     time.sleep(0.1)
 
+finFit = round(time.time() * 1000)
+
+execFit = finFit - debutFit
+print("Fit duration in ms : " + execFit.__str__)
+
 data_zero = [(datetime.now() - timedelta(hours=1)), 0, 0]
 
 f = open('data.csv', 'a', newline='', encoding='UTF8')
@@ -108,6 +120,8 @@ writer = csv.writer(f, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 writer.writerow(data_zero)
 f.close()
 
+debutEval = round(time.time() * 1000)
+
 evalTh = evaluateThread(x_test, y_test)
 evalTh.start()
 
@@ -120,3 +134,8 @@ while evalTh.etat:
     writer.writerow(data)
     f.close()
     time.sleep(0.1)
+
+finEval = round(time.time() * 1000)
+
+execEval = finEval - debutEval
+print("Eval duration in ms : " + execEval.__str__)
