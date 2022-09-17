@@ -1,1 +1,1 @@
-insert in app.py the preogramm you want to benchmarked.
+insert in app.py the program you want to benchmarked.
